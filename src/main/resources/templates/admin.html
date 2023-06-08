@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout :: head"></head>
+
+<body>
+    <nav th:replace="layout :: nav"></nav>
+    <div class="container">
+        <div class="action">
+        	<div class="col-md-4 text-center">
+		        <a th:href="@{/admin/addCar}"><input type="button" class="btn btn-success"
+		                    value="Thêm mới" /></a>
+        	</div>
+        	<div class="col-md-4 text-center">
+		        <a th:href="@{/register}"><input type="button" class="btn btn-warning"
+		                    value="Thêm tài khoản" /></a>
+        	</div>
+        	<div class="col-md-4 text-center">
+		        <a th:href="@{/logout}"><input type="button" class="btn btn-danger"
+		                    value="Đăng xuất" /></a>
+        	</div>
+        </div>
+        <hr>
+        <div class="row text-center">
+            <div class="col-md-3 col-sm-6 hero-feature" th:each="c : ${availableCars}">
+                <div class="thumbnail">
+                    <img th:src="@{'/img/'+${c.imgName}}" />
+                    <div class="caption">
+                        <h3 th:text="${c.name}"></h3>
+                        <p th:text="${c.description}"></p>
+                        <p th:text="${#numbers.formatDecimal(c.price, 0, 'COMMA', 0, 'POINT')}+ ' VNĐ/ngày'"></p>
+                        <p>
+                            <a href="#" class="btn btn-primary" th:href="@{/admin/editCar(car_id=${c.id})}">Sửa</a>
+                            <a href="#" class="btn btn-danger" th:href="@{/admin/deleteCar(car_id=${c.id})}">Xoá</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer th:replace="layout :: footer"></footer>
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout :: head"></head>
+
+<body>
+    <nav th:replace="layout :: nav"></nav>
+    <header class="header">
+        <img src="./img/banner.jpg" class="banner">
+        <h1 class="text-banner">Chọn ngày thuê:</h1>
+        <form action="/getcar" method="GET" class="find-car">
+            <h4 class="banner-text">Bắt đầu</h4>
+            <input type="date" class="form-control" name="start_date" placeholder="Chọn ngày thuê">
+            <h4 class="banner-text">Kết thúc</h4>
+            <input type="date" class="form-control" name="end_date" placeholder="Chọn ngày kết thúc">
+            <button class="btn btn-success btn-find" type="submit">Tìm xe ngay</button>
+        </form>
+    </header>
+    <div class="container">
+        <br>
+        <br>
+        <h2 class="text-center">Các xe mà chúng tôi đang có</h2>
+        <br>
+        <div class="row text-center">
+            <div class="col-md-3 col-sm-6 hero-feature" th:each="c : ${availableCars}">
+                <div class="thumbnail">
+                    <img th:src="@{'/img/'+${c.imgName}}" />
+                    <div class="caption">
+                        <h3 th:text="${c.name}"></h3>
+                        <p th:text="${c.description}"></p>
+                        <p th:text="${#numbers.formatDecimal(c.price, 0, 'COMMA', 0, 'POINT')}+ ' VNĐ/ngày'"></p>
+                        <p>
+                            <a href="#" class="btn btn-primary" th:href="@{/bookPartOne(car_id=${c.id})}">Thuê xe</a>
+                            <a href="#" class="btn btn-default" th:href="@{/carDetail(car_id=${c.id})}">Chi tiết</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer th:replace="layout :: footer"></footer>
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Built-By: xdnuos
+Build-Jdk: 17.0.4.1
+Implementation-Title: xdnuos
+Implementation-Version: 1.0-SNAPSHOT
+Implementation-Vendor-Id: rental
+Implementation-Vendor: Pivotal Software, Inc.
+Implementation-URL: http://projects.spring.io/spring-boot/Starter/
+Created-By: Maven Integration for Eclipse
+

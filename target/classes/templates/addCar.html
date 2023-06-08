@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout :: head"></head>
+
+<body>
+    <nav th:replace="layout :: nav"></nav>
+    <div class="container">
+        <hr>
+        <div class="container">
+            <h3 class="text-center">Nhập thông tin xe</h3>
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6">
+                <form name="addCar" method="post" onsubmit="return validateForm()" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label>Tên xe:</label>
+                        <input type="text" class="form-control" name="carName" placeholder="Nhập tên xe">
+                        <h4 id="carNameValidation" class="bg-danger"></h4>
+                    </div>
+                    <div class="form-group">
+                        <label>Mô tả</label>
+                        <textarea class="form-control" name="desc" rows="4" cols="50"
+                            placeholder="Nhập mô tả"></textarea>
+                        <h4 id="descValidation" class="bg-danger"></h4>
+                    </div>
+                    <div class="form-group">
+                        <label>Giá:</label>
+                        <input type="number" class="form-control" name="price" placeholder="Nhập giá">
+                        <h4 id="priceValidation" class="bg-danger"></h4>
+                    </div>
+                    <div class="form-group">
+                        Ảnh: <input type="file" name="image" />
+                    </div>
+                    <br>
+                    <button class="btn btn-success" type="submit">Tiếp tục</button>
+                </form>
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+        <hr>
+    </div>
+    <footer th:replace="layout :: footer"></footer>
+    <script>
+        function validateForm() {
+            var carName = document.addCar.carName.value;
+            var desc = document.addCar.desc.value;
+            var price = document.addCar.price.value;
+
+            if (carName == null || carName == "") {
+                document.getElementById("carNameValidation").innerHTML = "Tên không được để trống";
+                return false;
+            }
+            else if (carName.length < 2 || carName.length > 50) {
+                document.getElementById("fullNameValidation").innerHTML = "Độ dài của tên từ 2-50 kí tự";
+                return false;
+            }
+            else if (desc == null || desc == "") {
+                document.getElementById("descValidation").innerHTML = "Mô tả không được để trống";
+                return false;
+            }
+            else if (desc.length < 20 || desc.length > 300) {
+                document.getElementById("descValidation").innerHTML = "Độ dài của mô tả phải từ 20-300 kí tự";
+                return false;
+            }
+            else if (price == null || price == "") {
+                document.getElementById("priceValidation").innerHTML = "Giá không được để trống";
+                return false;
+            }
+            else if (price <= 0) {
+                document.getElementById("priceValidation").innerHTML = "Giá không hợp lệ";
+                return false;
+            }
+        }
+
+    </script>
+</body>
+
+</html>

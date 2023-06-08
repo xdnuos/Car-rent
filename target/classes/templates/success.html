@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout :: head"></head>
+
+<body>
+    <nav th:replace="layout :: nav"></nav>
+    <div class="container">
+        <img src="./img/success.webp" class="col-sm-6 success-img">
+        <div class="success-text col-sm-6">
+            <h1 class="text-center">Đặt xe thành công</h1>
+            <br>
+            <p class="text-center">Chúng tôi đã gửi email xác nhận cho bạn</p>
+            <p class="text-center">và sẽ sớm liên hệ lại để sắp xếp thời gian nhận xe.</p>
+            <br>
+            <br>
+            <div class="text-center"><a th:href="@{/}"><input type="button" class="btn btn-success btn-return"
+                        value="Quay về trang chủ" /></a></div>
+        </div>
+    </div>
+    <footer th:replace="layout :: footer"></footer>
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>

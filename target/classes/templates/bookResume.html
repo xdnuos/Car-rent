@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout :: head"></head>
+
+<body>
+    <nav th:replace="layout :: nav"></nav>
+    <div class="container">
+        <div class="row">
+            <h3 class="text-center">Xác nhận thông tin thuê xe</h3>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-sm-3 text-right">
+                <div class="center-block">
+                    <img height="100" th:src="@{'/img/'+${carById.name}+'.png'}" />
+                </div>
+            </div>
+            <div class="col-sm-9">
+                <div class="caption">
+                    <h3 th:text="${carById.name}"></h3>
+                    <h5 th:text="${carById.description}"></h5>
+                    <h5 th:text="'Giá: '+${#numbers.formatDecimal(carById.price, 0, 'COMMA', 0, 'POINT')}+ ' VNĐ/ngày'"></h5>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-3 text-right">
+                <div class="center-block">
+                    <img height="130" th:src="@{'/img/customer-blank.png'}" />
+                </div>
+            </div>
+            <div class="col-sm-9">
+                <div class="caption">
+                    <h3 th:text="${cust.fullName}"></h3>
+                    <h5 th:text="'Thời gian thuê: '+${#dates.format(borrowedDate.startDate, 'dd-MM-yyyy')}+
+                    ' -> ' +${#dates.format(borrowedDate.endDate, 'dd-MM-yyyy')}"></h5>
+                    <h5 th:text="'Email: ' +${cust.email}"></h5>
+                    <h5 th:text="'SĐT: ' +${cust.phone}"></h5>
+                    <h5 th:text="'Tổng cộng: '+${#numbers.formatDecimal(cust.totalPrice, 0, 'COMMA', 0, 'POINT')}+ ' VNĐ'"></h5>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-6">
+                    <div class="alert alert-info alert-dismissable">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                        <strong>Vui lòng kiểm tra lại thông tin của bạn trước khi thuê xe!</strong>
+                    </div>
+                </div>
+                <div class="col-sm-3"></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4"></div>
+                <div class="col-sm-4">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <a th:href="@{/}"><input type="button" class="btn btn-danger" value="Huỷ" /></a>
+                        </div>
+                        <div class="col-sm-6">
+                            <form th:object="${customer}" method="post">
+                                <button class="btn btn-success" type="submit">Thuê xe</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4"></div>
+            </div>
+        </div>
+    </div>
+    <footer th:replace="layout :: footer"></footer>
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        if (window.location.href.indexOf("date") != -1) {
+            $("#checkAvailability").show();
+        }
+        else {
+            $("#checkAvailability").hide();
+        }
+
+    </script>
+</body>
+
+</html>

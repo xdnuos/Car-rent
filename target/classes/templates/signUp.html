@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout :: head"></head>
+
+<body>
+    <div class="container">
+    	<div class="row">
+    		<div class="col-sm-6 col-md-4 col-md-offset-4">
+    			<div class="account-wall">
+			        <div>
+			            <h1 class="text-center">Đăng kí tài khoản</h1>
+			        </div>
+			        <p th:inline="text" class="text-center" style="color:red">[[${message}]]</p>
+			        <form class="form-signin" th:action="@{/process_register}" th:object="${user}" method="post">
+                        <input type="email" th:field="*{email}" class="form-control" placeholder="Email" required autofocus/>
+                        <br>
+                        <input type="password" th:field="*{password}" class="form-control" placeholder="Mật Khẩu" required minlength="6"
+                            maxlength="10" />
+                        <input type="text" th:field="*{firstName}" class="form-control" placeholder="Họ" required minlength="2"
+                            maxlength="20" />
+                        <br>
+                        <input type="text" th:field="*{lastName}" class="form-control" placeholder="Tên" required minlength="2"
+                            maxlength="20" />
+                        <br>
+                        <button type="submit" class="btn btn-lg btn-primary btn-block">Đăng kí</button>
+			        </form>
+		        </div>
+	        </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+</html>
